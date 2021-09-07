@@ -1,11 +1,11 @@
 import pandas as pd
 
 # 国际化导出
-excel_index = 3 # 要替换的excel对应的列索引
+excel_index = 2 # 要替换的excel对应的列索引
 excel_path = '/Users/apple/Work/art_py/Book1.xlsx' # 要替换的excel对应的列索引
 miss_out_file_path = '/Users/apple/Work/art_py/miss_out.js'
-# to_file_path = '/Users/apple/Work/art_py/en.js'
-to_file_path = '/Users/apple/Work/art_py/zh-TW.js'
+to_file_path = '/Users/apple/Work/art_py/en.js'
+# to_file_path = '/Users/apple/Work/art_py/zh-TW.js'
 from_file_path = '/Users/apple/Work/art_py/zh-CN.js'
 
 
@@ -20,10 +20,14 @@ def translate():
     miss_out = open(miss_out_file_path, 'w+', encoding='utf-8')
     with open(from_file_path, 'r', encoding='utf8') as f:
         for inl, line in enumerate(f):
-            if sp_str in line and "'" in line:
+        # for line in f:
+            if sp_str in line:
                 temp = line
                 tempTwo = line.split(sp_str)[1]
-                
+                # print(inl)
+                # if inl == 1:
+                #     print(line.split(sp_str)[1])
+                #     break
                 for inx, x in enumerate(a_li):
                     if x[1] != '' and x[1] == tempTwo:
                         temp = temp.replace(x[1], x[excel_index])
